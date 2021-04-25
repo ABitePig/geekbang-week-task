@@ -1,0 +1,18 @@
+package geekbang
+
+import (
+	"database/sql"
+	"log"
+)
+
+func demo() {
+	var name string
+	err = db.QueryRow("select name from users where name = 'nt' ", 1).Scan(&name)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			// there were no rows, but otherwise no error occurred
+		} else {
+			log.Fatal(err)
+		}
+	}
+}
